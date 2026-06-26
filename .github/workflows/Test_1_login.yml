@@ -20,4 +20,21 @@ jobs:
       - uses: actions/checkout@v4
       - name: init
         run: terraform init
-        
+  job3:
+    needs:
+      - job1
+      - job2
+    runs-on: self-hosted
+    steps:
+      - name: plan
+        run: terraform plan -out=plan
+  
+  job4:
+    needs:
+      - job1
+      - job2
+      - job3
+    runs-on: self-hosted
+    steps:
+      - name: plan
+        run: terraform apply --auto-approve plan
