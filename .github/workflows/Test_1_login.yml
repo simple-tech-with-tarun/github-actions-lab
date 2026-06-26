@@ -9,9 +9,6 @@ jobs:
       - uses: actions/checkout@v4
 
   job2:
-    needs:
-      - job1
-      - job3
     runs-on: self-hosted
     steps:
       - name: Login to Azure
