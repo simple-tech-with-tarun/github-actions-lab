@@ -16,8 +16,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Validate
-        run: echo "GitHub actions CLI is working"
+      # - name: Validate
+      #   run: echo "GitHub actions CLI is working"
 
       - name: Show GitHub Context
         run: |
