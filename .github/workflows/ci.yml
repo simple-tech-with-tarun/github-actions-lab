@@ -20,7 +20,7 @@ jobs:
         run: echo "GitHub actions CLI is working"
 
       - name: Show GitHub Context
-        run:
+        run: |
           echo "Operating System: $RUNNER_OS"
           echo "Branch/ref: $GITHUB_REF"
           echo "Commit SHA: $GITHUB_SHA"
