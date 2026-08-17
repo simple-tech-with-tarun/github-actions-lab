@@ -26,3 +26,5 @@ jobs:
           echo "Commit SHA: $GITHUB_SHA"
           echo "Event: $GITHUB_EVENT_NAME"
           echo "Repository: $GITHUB_REPOSITORY"
+
+# Ruleset test did not work because it was not active at the time. Rule activated later. main updated in local repo which prevented push.. Pull did not work either. hard reset done to reset last two commits. git reset --hard HEAD~2
