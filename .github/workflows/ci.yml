@@ -18,3 +18,11 @@ jobs:
 
       - name: Validate
         run: echo "GitHub actions CLI is working"
+
+      - name: Show GitHub Context
+        run:
+          echo "Operating System: $RUNNER_OS"
+          echo "Branch/ref: $GITHUB_REF"
+          echo "Commit SHA: $GITHUB_SHA"
+          echo "Event: $GITHUB_EVENT_NAME"
+          echo "Repository: $GITHUB_REPOSITORY"
