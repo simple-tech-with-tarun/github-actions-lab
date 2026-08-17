@@ -13,6 +13,7 @@
 #           client_secret: "Jl.8Q~5drVEWW1ypKUXEYjk_3HVdPzPq76uexbnb"
 #           subscription_id: "f404697e-6425-41fa-99cd-804885e9a8d5"
 #           tenant_id: "aee24866-30ec-48a2-bcb3-dcec25f7b031"
+# the above credentials are account specific. They will not work now.
 
 #       - uses: actions/checkout@v4
 #       - name: init
