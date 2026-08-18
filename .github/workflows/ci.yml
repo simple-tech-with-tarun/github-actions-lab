@@ -9,29 +9,23 @@ on:
   #   branches: # runs after pull request targetting any branch
   #     - "**"
 env:
-  LAB_NAME: "github-actions-lab"
-  LAB_TASK: "task-3"
+  SCOPE_TEST: workflow-value
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
+    env:
+      SCOPE_TEST: job_value
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Validate
-        run: |
-          echo "GitHub actions CLI is working"
-          echo "Lab: $LAB_NAME"
-          echo "Task: $LAB_TASK"
-
-      # - name: Show GitHub Context
-      #   run: |
-      #     echo "Operating System: $RUNNER_OS"
-      #     echo "Branch/ref: $GITHUB_REF"
-      #     echo "Commit SHA: $GITHUB_SHA"
-      #     echo "Event: $GITHUB_EVENT_NAME"
-      #     echo "Repository: $GITHUB_REPOSITORY"
-
-# Ruleset test did not work because it was not active at the time. Rule activated later. main updated in local repo which prevented push.. Pull did not work either. hard reset done to reset last two commits. git reset --hard HEAD~2
+      - name: Workflow_scope
+        run: echo "SCOPE_TEST=$SCOPE_TEST"
+      
+      - name: Step_scope
+        env:
+          SCOPE_TEST: step_value
+        run: echo "SCOPE_TEST=$SCOPE_TEST"
+      
+      - name: Back to Job Scope
+        run: echo "SCOPE_TEST= $SCOPE_TEST"
