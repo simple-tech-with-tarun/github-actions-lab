@@ -8,24 +8,26 @@ on:
   # pull_request:
   #   branches: # runs after pull request targetting any branch
   #     - "**"
-env:
-  SCOPE_TEST: workflow-value
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
-    # env:
-    #   SCOPE_TEST: job_value
-
+  
     steps:
-      - name: Workflow_scope
-        run: echo "SCOPE_TEST=$SCOPE_TEST"
-      
-      - name: Step_scope
-        env:
-          SCOPE_TEST: step_value
-        run: echo "SCOPE_TEST=$SCOPE_TEST"
-      
-      - name: Back to Job Scope
-        run: echo "SCOPE_TEST= $SCOPE_TEST"
+      - name: test job
+        run: echo "Test Job validated"
+  
+  build:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: build job
+        run: echo "Build Job validated"
+
+  deploy:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: deploy job
+        run: echo "Deploy Job validated"
+# no dependencies
