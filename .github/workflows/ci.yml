@@ -15,8 +15,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    env:
-      SCOPE_TEST: job_value
+    # env:
+    #   SCOPE_TEST: job_value
 
     steps:
       - name: Workflow_scope
