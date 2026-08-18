@@ -33,3 +33,10 @@ jobs:
       - name: deploy job
         run: echo "Deploy Job validated"
 # with dependencies
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: deploy job
+        run: echo "Deploy2 Job validated"
