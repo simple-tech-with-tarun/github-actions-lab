@@ -18,7 +18,7 @@ jobs:
         run: echo "Test Job validated"
   
   build:
-    needs: test
+    needs: deploy2
     runs-on: ubuntu-latest
   
     steps:
@@ -42,3 +42,4 @@ jobs:
         run: echo "Deploy2 Job validated"
 
 # two jobs with the same name do not work
+# adding looping dependencies to check it GutHub actions recognizes this issue.
