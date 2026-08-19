@@ -29,7 +29,7 @@ jobs:
 
   deploy:
     needs: build
-    if: ${{ failure() }}
+    if: ${{ always() }}
     runs-on: ubuntu-latest
   
     steps:
