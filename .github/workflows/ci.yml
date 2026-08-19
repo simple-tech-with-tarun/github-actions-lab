@@ -25,7 +25,7 @@ jobs:
       - name: build job
         run: |
           echo "Building or not"
-          exit 0
+          exit 1
 
   deploy:
     needs: build
