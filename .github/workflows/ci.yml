@@ -1,13 +1,7 @@
 name: ci_1
 
 on:
-  workflow_dispatch: # running on manual trigger
-  # push:
-  #   branches: # runs after pushing to main branch
-  #     - main
-  # pull_request:
-  #   branches: # runs after pull request targetting any branch
-  #     - "**"
+  workflow_dispatch: 
 
 jobs:
   test:
@@ -20,17 +14,43 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
-  
-    steps:
-      - name: build job
-        run: |
-          echo "Building or not"
 
+    outputs: 
+      app_version: ${{ steps.generate_version.outputs.step_version }}
+      app_delta: ${{ steps.generate_version.outputs.delta}}
+      
+    steps:
+      - name: Generate version
+        id: generate_version
+        run: | 
+          echo "step_version=1.0.${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+          echo "delta=3.0.0${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+          echo "step_version=1.0.${{ github.run_number }}"
+          echo "delta=3.0.0${{ github.run_number }}"
+
+      - name: Build
+        run: |
+          echo "Building version: ${{ steps.generate_version.outputs.step_version }}"
+          echo "Running version: ${{ steps.generate_version.outputs.delta}}"
+  
   deploy:
     needs: build
     if: ${{ always() }}
     runs-on: ubuntu-latest
-  
+
     steps:
-      - name: deploy job
-        run: echo "Deploy Job validated"
+      - name: Deploy
+        run: |
+          echo "Deploying version: ${{needs.build.outputs.app_version}}"
+  
+  deploy2:
+    needs: 
+      - build
+      - deploy
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: deploy2
+        run: |
+          echo "Running version: ${{ needs.build.outputs.app_delta}}"
