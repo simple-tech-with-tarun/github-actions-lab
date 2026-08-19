@@ -23,7 +23,9 @@ jobs:
   
     steps:
       - name: build job
-        run: echo "Build Job validated"
+        run: |
+          echo "Building or not"
+          exit 1
 
   deploy:
     needs: build
