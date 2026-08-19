@@ -15,7 +15,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
 
-    outputs: |
+    outputs: 
       app_version: ${{ steps.generate_version.outputs.step_version }}
       app_delta: ${{ steps.generate_version.outputs.delta}}
       
@@ -42,12 +42,12 @@ jobs:
         run: echo "Deploying version: ${{needs.build.outputs.app_version}}"
   
   deploy2:
-    needs: |
-      build
-      deploy
+    needs: 
+      - build
+      - deploy
     
     runs-on: ubuntu-latest
 
     steps:
       - name: deploy2
-        runs: echo "Running version: ${{ needs.build.outputs.app_delta}}"
+        run: echo "Running version: ${{ needs.build.outputs.app_delta}}"
