@@ -23,10 +23,14 @@ jobs:
         id: generate_version
         run: | 
           echo "step_version=1.0.${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+          echo "delta=3.0.0${{ github.run_number }}" >> "$GITHUB_OUTPUT"
           echo "step_version=1.0.${{ github.run_number }}"
+          echo "delta=3.0.0${{ github.run_number }}"
 
       - name: Build
-        run: echo "Building version ${{ steps.generate_version.outputs.step_version }}"
+        run: |
+          echo "Building version ${{ steps.generate_version.outputs.step_version }}"
+          echo "Running version ${{ steps.generate_version.outputs.delta}}"
   
   deploy:
     needs: build
