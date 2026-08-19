@@ -21,7 +21,9 @@ jobs:
     steps:
       - name: Generate version
         id: generate_version
-        run: echo "step_version=1.0.${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+        run: | 
+          echo "step_version=1.0.${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+          echo "step_version=1.0.${{ github.run_number }}"
 
       - name: Build
         run: echo "Building version ${{ steps.generate_version.outputs.step_version }}"
