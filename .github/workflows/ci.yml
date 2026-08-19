@@ -15,8 +15,9 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
 
-    outputs: 
+    outputs: |
       app_version: ${{ steps.generate_version.outputs.step_version }}
+      app_delta: ${{ steps.generate_version.outputs.delta}}
       
     steps:
       - name: Generate version
@@ -29,8 +30,8 @@ jobs:
 
       - name: Build
         run: |
-          echo "Building version ${{ steps.generate_version.outputs.step_version }}"
-          echo "Running version ${{ steps.generate_version.outputs.delta}}"
+          echo "Building version: ${{ steps.generate_version.outputs.step_version }}"
+          echo "Running version: ${{ steps.generate_version.outputs.delta}}"
   
   deploy:
     needs: build
@@ -38,4 +39,15 @@ jobs:
 
     steps:
       - name: Deploy
-        run: echo "Deploying version ${{needs.build.outputs.app_version}}"
+        run: echo "Deploying version: ${{needs.build.outputs.app_version}}"
+  
+  deploy2:
+    needs: |
+      build
+      deploy
+    
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: deploy2
+        runs: echo "Running version: ${{ needs.build.outputs.app_delta}}"
