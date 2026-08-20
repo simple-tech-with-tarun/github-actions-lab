@@ -48,22 +48,20 @@ jobs:
 
   deploy:
     needs: build
-    if: ${{ always() }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Deploy
         run: |
           echo "Deploying version: ${{needs.build.outputs.app_version}}"
+    
+      - name: Download Build Info
+        uses: actions/download-artifact@v5
+        with:
+          name: build-info
+          path: build_artifacts
   
-  deploy2:
-    needs: 
-      - build
-      - deploy
-    if: ${{ always() }}
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: deploy2
+      - name: Read Build Info
         run: |
-          echo "Running version: ${{ needs.build.outputs.app_delta}}"
+          echo "Contents of artifact: Build Info"
+          cat build_artifacts/build-info.txt
