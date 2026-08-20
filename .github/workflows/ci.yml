@@ -20,5 +20,14 @@ jobs:
      
       - name: Create Dependency Data
         run: |
+          if [ -f dependencies/dependency.txt ]; then
+            echo "Dependency already exists — using cached dependency"
+          else
            mkdir -p dependencies
            echo "Dependency created during the run ${{ github.run_number }}" > dependencies/dependency.txt
+           echo "Dependency created - cache was empty"
+          fi
+
+      - name: Show Dependency Data
+        run: |
+          cat dependencies/dependency.txt
