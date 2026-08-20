@@ -8,17 +8,17 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
 
-      - name: Build
-          run: |
-            echo "Building.."
+    - name: Build
+         run: |
+           echo "Building.."
 
-      - name: Restore dependencies cache
-        uses: actions/cache@v4
-        with:
-          path: dependencies
-          key: dependencies-${{ runner.os }}
+    - name: Restore dependencies cache
+      uses: actions/cache@v4
+      with:
+        path: dependencies
+        key: dependencies-${{ runner.os }}
 
-      - name: Create Dependenct Data
-        run: |
-          mkdir -p dependencies
-          echo "Dependency created during the run ${{  github.run_number }}" > dependencies/dependency.txt
+    - name: Create Dependenct Data
+      run: |
+        mkdir -p dependencies
+        echo "Dependency created during the run ${{  github.run_number }}" > dependencies/dependency.txt
