@@ -16,7 +16,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: dependencies
-          key: dependencies-${{ runner.os }}
+          key: dependencies-${{ runner.os }}-v2
      
       - name: Create Dependency Data
         run: |
