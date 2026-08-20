@@ -1,25 +1,25 @@
 name: ci_1
 
 on:
-  workflow_dispatch: 
+  push:
+    branches:
+      - "**" 
+      - "!main"  # we can use branches-ignore is we want to just ignore few branches and leave the others
+                 # or '!' will be used to mention which branch to ignore.
+                 # both branches and branches-ignore can not be used at the same time.
 
 jobs:
-   build:
+   config:
      runs-on: ubuntu-latest
      
+     env:
+       APP_ENV: lab
+
      steps:
-      - name: Build
+      - name: Show environment
         run: |
-          echo "Building.."
+          echo "Application environment: $APP_ENV"
      
-      - name: Use LAB SECRET
+      - name: Use environment
         run: |
-          echo "Lab Secret is ${{ secrets.LAB_SECRET }}"
-      
-      - name: Using as Environment Variable
-        env:
-          APP_TOKEN: ${{ secrets.LAB_SECRET }}
-        run: |
-          echo "Environment Variable contains: $APP_TOKEN"
-          echo "Secret is available as an Environment Variable"
-          echo "Secret length: ${#APP_TOKEN}"  
+          echo "Running application in $APP_ENV environment"
