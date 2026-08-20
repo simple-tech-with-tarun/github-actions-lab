@@ -35,10 +35,17 @@ jobs:
 
       - name: Create Build Info
         run: |
-          echo "Application version: ${{ steps.generate_version.outputs.step_version }}" > build-info.txt
-          echo "Running version: ${{ steps.generate_version.outputs.delta}}" >> build-info.txt
-          echo "Build run: ${{ github.run_number }}" >> build-info.txt
-  
+          mkdir -p build_artifacts
+          echo "Application version: ${{ steps.generate_version.outputs.step_version }}" > build_artifacts/build-info.txt
+          echo "Running version: ${{ steps.generate_version.outputs.delta}}" >> build_artifacts/build-info.txt
+          echo "Build run: ${{ github.run_number }}" >> build_artifacts/build-info.txt
+
+      - name: Upload Build Info
+        uses: actions/upload-artifact@v4
+        with: 
+          name: build-info
+          path: build_artifacts/
+
   deploy:
     needs: build
     if: ${{ always() }}
