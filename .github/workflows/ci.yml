@@ -4,21 +4,18 @@ on:
   workflow_dispatch: 
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Build
-        run: |
-          echo "Building.."
-
-      - name: Restore Dependencies Cache
-        uses: actions/cache@v4
-        with:
-          path: dependencies
-          key: dependencies-${{ runner.os }}
-
-      - name: Create Dependency Data
-        run: |
-          mkdir -p dependencies
-          echo "Dependency created during the run ${{ github.run_number }}" > dependencies/dependency.txt
+   build:
+     runs-on: ubuntu-latest
+      steps:
+       - name: Build
+         run: |
+           echo "Building.."
+        - name: Restore Dependencies Cache
+         uses: actions/cache@v4
+         with:
+           path: dependencies
+           key: dependencies-${{ runner.os }}
+        - name: Create Dependency Data
+         run: |
+           mkdir -p dependencies
+           echo "Dependency created during the run ${{ github.run_number }}" > dependencies/dependency.txt
