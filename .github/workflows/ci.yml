@@ -15,3 +15,11 @@ jobs:
       - name: Use LAB SECRET
         run: |
           echo "Lab Secret is ${{ secrets.LAB_SECRET }}"
+      
+      - name: Using as Environment Variable
+        env:
+          APP_TOKEN: ${{ secrets.LAB_SECRET }}
+        run: |
+          echo "Environment Variable contains: $APP_TOKEN"
+          echo "Secret is available as an Environment Variable"
+          echo "Secret length: ${#APP_TOKEN}"  
