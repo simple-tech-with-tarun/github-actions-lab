@@ -16,10 +16,16 @@ jobs:
        APP_ENV: lab
 
      steps:
-      - name: Show environment
+      - name: Default
         run: |
-          echo "Application environment: $APP_ENV"
+          echo "Job_var : $APP_ENV"
      
-      - name: Use environment
+      - name: Override
+        env:
+          APP_ENV: Test
         run: |
-          echo "Running application in $APP_ENV environment"
+          echo "Step_var: $APP_ENV"
+
+      - name: After Override
+        run: |
+          echo "APP_ENV : $APP_ENV" 
