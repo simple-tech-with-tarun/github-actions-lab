@@ -65,3 +65,23 @@ jobs:
         run: |
           echo "Contents of artifact: Build Info"
           cat build_artifacts/build-info.txt
+
+  deploy2:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: deploy2
+        run: |
+          echo " Deploying Running version: ${{ needs.build.outputs.app_delta}}"
+      
+      - name: Download Build Info
+        uses: actions/download-artifact@v5
+        with:
+         name: build-info
+         path: build_artifacts
+
+      - name: Read Build Info
+        run: |
+          echo "Contents of artifact: Build Info"
+          cat build_artifacts/build-info.txt
