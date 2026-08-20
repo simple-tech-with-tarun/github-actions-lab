@@ -12,22 +12,6 @@ jobs:
         run: |
           echo "Building.."
      
-      - name: Restore Dependencies Cache
-        uses: actions/cache@v4
-        with:
-          path: dependencies
-          key: dependencies-${{ runner.os }}-v2
-     
-      - name: Create Dependency Data
+      - name: Use LAB SECRET
         run: |
-          if [ -f dependencies/dependency.txt ]; then
-            echo "Dependency already exists — using cached dependency"
-          else
-           mkdir -p dependencies
-           echo "Dependency created during the run ${{ github.run_number }}" > dependencies/dependency.txt
-           echo "Dependency created - cache was empty"
-          fi
-
-      - name: Show Dependency Data
-        run: |
-          cat dependencies/dependency.txt
+          echo "Lab Secret is ${{ secrets.LAB_SECRET }}"
