@@ -32,25 +32,56 @@ jobs:
         run: |
           echo "Building version: ${{ steps.generate_version.outputs.step_version }}"
           echo "Running version: ${{ steps.generate_version.outputs.delta}}"
-  
+
+      - name: Create Build Info
+        run: |
+          mkdir -p build_artifacts
+          echo "Application version: ${{ steps.generate_version.outputs.step_version }}" > build_artifacts/build-info.txt
+          echo "Running version: ${{ steps.generate_version.outputs.delta}}" >> build_artifacts/build-info.txt
+          echo "Build run: ${{ github.run_number }}" >> build_artifacts/build-info.txt
+
+      - name: Upload Build Info
+        uses: actions/upload-artifact@v4
+        with: 
+          name: build-info
+          path: build_artifacts/
+
   deploy:
     needs: build
-    if: ${{ always() }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Deploy
         run: |
           echo "Deploying version: ${{needs.build.outputs.app_version}}"
+    
+      - name: Download Build Info
+        uses: actions/download-artifact@v5
+        with:
+          name: build-info
+          path: build_artifacts
   
+      - name: Read Build Info
+        run: |
+          echo "Contents of artifact: Build Info"
+          cat build_artifacts/build-info.txt
+
   deploy2:
-    needs: 
-      - build
-      - deploy
-    if: ${{ always() }}
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
       - name: deploy2
         run: |
-          echo "Running version: ${{ needs.build.outputs.app_delta}}"
+          echo " Deploying Running version: ${{ needs.build.outputs.app_delta}}"
+      
+      - name: Download Build Info
+        uses: actions/download-artifact@v5
+        with:
+         name: build-info
+         path: build_artifacts
+
+      - name: Read Build Info
+        run: |
+          echo "Contents of artifact: Build Info"
+          cat build_artifacts/build-info.txt
