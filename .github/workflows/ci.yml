@@ -37,7 +37,7 @@ jobs:
         run: |
           echo "Application version: ${{ steps.generate_version.outputs.step_version }}" > build-info.txt
           echo "Running version: ${{ steps.generate_version.outputs.delta}}" >> build-info.txt
-          echo "Build run: ${{ github.job_number }}" >> build-info.txt
+          echo "Build run: ${{ github.run_number }}" >> build-info.txt
   
   deploy:
     needs: build
