@@ -21,13 +21,13 @@ jobs:
         run: |
           echo "Selected Environment ${{ inputs.environment }}"
 
-  production:
-    if: ${{ inputs.environment == "prod" }}
-    runs-on: ubuntu-latest
+   production:
+     if: ${{ inputs.environment == "prod" }}
+     runs-on: ubuntu-latest
 
-    steps:
-      - name: Production Deployment
-        run: |
-          echo "Running Production job ${{ github.run_number }}"
+     steps:
+       - name: Production Deployment
+         run: |
+           echo "Running Production job ${{ github.run_number }}"
 
   
