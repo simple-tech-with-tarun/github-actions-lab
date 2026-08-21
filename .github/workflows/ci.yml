@@ -1,31 +1,22 @@
 name: ci_1
 
 on:
-  push:
-    branches:
-      - "**" 
-      - "!main"  # we can use branches-ignore is we want to just ignore few branches and leave the others
-                 # or '!' will be used to mention which branch to ignore.
-                 # both branches and branches-ignore can not be used at the same time.
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "select environment"
+        required: true
+        type: choice
+        options:
+          - dev
+          - test
+          - prod
 
 jobs:
    config:
-     runs-on: ubuntu-latest
+     runs-on: self-hosted
      
-     env:
-       APP_ENV: lab
-
      steps:
-      - name: Default
+      - name: Show select Environment
         run: |
-          echo "Job_var : $APP_ENV"
-     
-      - name: Override
-        env:
-          APP_ENV: Test
-        run: |
-          echo "Step_var: $APP_ENV"
-
-      - name: After Override
-        run: |
-          echo "APP_ENV : $APP_ENV" 
+          echo "Select Environment ${{ inputs.environment }}"
