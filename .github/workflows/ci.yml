@@ -14,7 +14,7 @@ on:
 
 jobs:
    config:
-     runs-on: self-hosted
+     runs-on: ubuntu-latest
      
      steps:
       - name: Show select Environment
