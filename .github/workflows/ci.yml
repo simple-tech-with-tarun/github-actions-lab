@@ -11,6 +11,7 @@ on:
           - dev
           - test
           - prod
+          - Pankaj ka ghar
 
 jobs:
    config:
