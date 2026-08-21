@@ -14,9 +14,20 @@ on:
 
 jobs:
    config:
-     runs-on: self-hosted
+     runs-on: ubuntu-latest
      
      steps:
       - name: Show select Environment
         run: |
-          echo "Select Environment ${{ inputs.environment }}"
+          echo "Selected Environment ${{ inputs.environment }}"
+
+  production:
+    if: ${{ inputs.environment == "prod" }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Production Deployment
+        run: |
+          echo "Running Production job ${{ github.run_number }}"
+
+  
