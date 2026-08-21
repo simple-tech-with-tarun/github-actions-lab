@@ -1,7 +1,7 @@
 name: ci_1
 
 on:
-  workflow dispatch:
+  workflow_dispatch:
     inputs:
       environment:
         description: "select environment"
