@@ -22,7 +22,7 @@ jobs:
           echo "Selected Environment ${{ inputs.environment }}"
 
    production:
-     if: ${{ inputs.environment == "prod" }}
+     if: ${{ inputs.environment == 'prod' }}
      runs-on: ubuntu-latest
 
      steps:
