@@ -2,49 +2,19 @@ name: ci_1
 
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: "select environment"
-        required: true
-        type: choice
-        options:
-          - dev
-          - test
-          - prod
 
 jobs:
-  config:
+  test:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Show selected Environment
-        run: |
-          echo "Selected Environment ${{ inputs.environment }}"
-
-  production:
-    if: ${{ inputs.environment == 'prod' }}
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 18
+          - 25
+          - 45
 
     steps:
-      - name: Production Deployment
+      - name: Show Node version
         run: |
-          echo "Running Production job ${{ github.run_number }}"
-
-  validation:
-    if: ${{ inputs.environment != 'prod' }}
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Show warning
-        run: |
-          echo "You are not supposed to deploy: ${{ inputs.environment }}"
-  
-  warn:
-    needs: production
-    if: ${{ always() && needs.production.result == 'skipped' }}
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Sound warning
-        run: |
-          echo "WHY DID YOU DEPLOY: ${{ inputs.environment }}"
+          echo "Selected Node version: ${{ matrix.node-version }}"
