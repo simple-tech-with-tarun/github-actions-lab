@@ -37,7 +37,7 @@ jobs:
           echo "OS: ${{ matrix.os }}"
           echo "Selected Node version: ${{ matrix.node-version }}"
 
-          if [ "${{ matrix.node-version}}" == "25"] then
+          if ( "${{ matrix.node-version}}" == "25") then
             echo "Intentional Failure"
             exit 1
           fi
