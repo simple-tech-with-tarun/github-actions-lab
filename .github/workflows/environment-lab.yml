@@ -13,4 +13,4 @@ jobs:
       - name: Show Environment configuration
         run: |
           echo "GitHub Environment: prod"
-          echo "Deploy Target: $DEPLOY_TARGET"
+          echo "Deploy Target: ${{ vars.DEPLOY_TARGET }}"
