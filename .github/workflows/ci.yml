@@ -21,6 +21,9 @@ jobs:
         include:
           - os: windows-latest
             node-version: 100
+          
+          - node-version: 142
+            os: windows-latest
 
     steps:
       - name: Show Node version
