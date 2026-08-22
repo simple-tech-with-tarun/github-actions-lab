@@ -10,7 +10,7 @@ jobs:
     environment: prod
 
     steps:
-      - name: Show Environment
+      - name: Show Environment configuration
         run: |
-          echo "Running Deployment"
-          echo "Environment: prod"
+          echo "GitHub Environment: prod"
+          echo "Deploy Target: $DEPLOY_TARGET"
