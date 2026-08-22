@@ -15,11 +15,11 @@ on:
 jobs:
   config:
     runs-on: ubuntu-latest
-     
+
     steps:
-     - name: Show select Environment
-       run: |
-         echo "Selected Environment ${{ inputs.environment }}"
+      - name: Show selected Environment
+        run: |
+          echo "Selected Environment ${{ inputs.environment }}"
 
   production:
     if: ${{ inputs.environment == 'prod' }}
@@ -30,21 +30,11 @@ jobs:
         run: |
           echo "Running Production job ${{ github.run_number }}"
 
-   validation:
-     if: ${{ inputs.environment != 'prod' }}
-     runs-on: ubuntu-latest
+  validation:
+    if: ${{ inputs.environment != 'prod' }}
+    runs-on: ubuntu-latest
 
-     steps:
-       - name: Show warning
-         run: |
-           echo "You are not supprosed to deploy: ${{ inputs.environment }}"
-
-    # warn:
-    #   needs: production
-    #   if: ${{ needs.production.result == 'failure' }}
-    #   runs-on: ubuntu-latest
-
-    #   steps: 
-    #     - name: Show another warning
-    #       run: |
-    #         echo "WHY DID YOU SELECT ${{ inputs.environment }}"  
+    steps:
+      - name: Show warning
+        run: |
+          echo "You are not supposed to deploy: ${{ inputs.environment }}"
