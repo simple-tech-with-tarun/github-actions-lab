@@ -1,7 +1,7 @@
 name: PR CI
 
 on:
-  pull-request:
+  pull_request:
 
 jobs:
   pre-check:
