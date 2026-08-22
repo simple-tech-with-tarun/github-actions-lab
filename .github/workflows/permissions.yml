@@ -9,7 +9,7 @@ jobs:
 
     permissions:
       contents: read
-      pull_requests: none
+      pull-requests: none
 
     steps:
       - name: Read pull_requests
