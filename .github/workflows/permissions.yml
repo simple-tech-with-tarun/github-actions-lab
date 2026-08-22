@@ -9,6 +9,7 @@ jobs:
 
     permissions:
       contents: read
+      issues: write
 
     steps:
       - name: Create test issue
