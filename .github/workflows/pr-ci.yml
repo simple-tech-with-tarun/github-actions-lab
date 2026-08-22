@@ -1,0 +1,16 @@
+name: PR CI
+
+on:
+  pull-requests:
+
+jobs:
+  pre-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show PR Information
+        run: |
+          echo "PR Number: ${{ github.event.pull_request.number }}"
+          echo "Source Branch: ${{ github.head_ref }}"
+          echo "Target Branch: ${{ github.base_ref }}"
+          echo "Event: ${{ github.event_name }}"
