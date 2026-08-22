@@ -5,9 +5,6 @@ on:
 
 jobs:
   prod:
-    needs:
-      - dev
-      - staging
     runs-on: ubuntu-latest
 
     environment: prod
@@ -19,6 +16,7 @@ jobs:
           echo "Deploy Target: ${{ vars.DEPLOY_TARGET }}"
 
   dev:
+    needs: prod
     runs-on: ubuntu-latest
 
     environment: dev
@@ -30,6 +28,7 @@ jobs:
           echo "Deploy Target: ${{ vars.DEPLOY_TARGET }}"
   
   staging:
+    needs: prod
     runs-on: ubuntu-latest
 
     environment: staging
