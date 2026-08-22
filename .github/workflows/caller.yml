@@ -2,10 +2,15 @@ name: caller
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Enter Environment"
+        required: true
+        type: string
 
 
 jobs:
   call:
     uses: ./.github/workflows/reusable-ci.yml
     with: 
-      environment: test
+      reusable_environment: ${{ inputs.environment }}
