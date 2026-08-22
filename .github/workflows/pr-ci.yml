@@ -1,0 +1,14 @@
+name: PR Fail CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  pre-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: PR check fail
+        run: |
+          echo "Running PR CI"
+          exit 1
