@@ -2,10 +2,15 @@ name: caller
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Enter Environment"
+        required: true
+        type: string
 
 
 jobs:
   call:
-    uses: ./.github/workflows/reusable-ci.yml    
-
-    # call job has custom name.. not something fixed.. incorrect details added in last commit in the branch.
+    uses: ./.github/workflows/reusable-ci.yml
+    with: 
+      reusable_environment: ${{ inputs.environment }}
