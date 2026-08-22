@@ -5,7 +5,8 @@ on:
     inputs:
       reusable_environment:
         description: "Environment to run against"
-        required: true
+        required: false
+        default: dev
         type: string
 
 jobs:
