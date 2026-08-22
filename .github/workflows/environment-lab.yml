@@ -7,7 +7,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    environment: prod
+    environment: dev
 
     steps:
       - name: Show Environment configuration
