@@ -17,3 +17,4 @@ jobs:
           echo "Source Branch: ${{ github.head_ref }}"
           echo "Target Branch: ${{ github.base_ref }}"
           echo "Event: ${{ github.event_name }}"
+          echo "HELLO"
