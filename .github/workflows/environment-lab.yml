@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  prod:
     runs-on: ubuntu-latest
 
     environment: prod
@@ -13,4 +13,26 @@ jobs:
       - name: Show Environment configuration
         run: |
           echo "GitHub Environment: prod"
+          echo "Deploy Target: ${{ vars.DEPLOY_TARGET }}"
+
+  dev:
+    runs-on: ubuntu-latest
+
+    environment: dev
+
+    steps:
+      - name: Show Environment configuration
+        run: |
+          echo "GitHub Environment: dev"
+          echo "Deploy Target: ${{ vars.DEPLOY_TARGET }}"
+  
+  staging:
+    runs-on: ubuntu-latest
+
+    environment: staging
+
+    steps:
+      - name: Show Environment configuration
+        run: |
+          echo "GitHub Environment: staging"
           echo "Deploy Target: ${{ vars.DEPLOY_TARGET }}"
