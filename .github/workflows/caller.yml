@@ -5,5 +5,5 @@ on:
 
 
 jobs:
-  call-reusable:
-    uses: ./.guthub/workflow/reusable-ci.yml    
+  call:
+    uses: ./.github/workflows/reusable-ci.yml    
