@@ -38,3 +38,13 @@ jobs:
       - name: Show warning
         run: |
           echo "You are not supposed to deploy: ${{ inputs.environment }}"
+  
+  warn:
+    needs: production
+    if: ${{ inputs.environment != 'prod' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sound warning
+        run: |
+          echo "WHY DID YOU DEPLOY: ${{ inputs.environment }}"
