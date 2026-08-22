@@ -28,6 +28,9 @@ jobs:
         exclude:
           - os: ubuntu-latest
             node-version: 25
+            
+          - node-version: 142
+            os: windows-latest
 
     steps:
       - name: Show Node version
