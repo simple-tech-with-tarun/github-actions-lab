@@ -1,0 +1,16 @@
+name: Environment Lab
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    environment: prod
+
+    steps:
+      - name: Show Environment
+        run: |
+          echo "Running Deployment"
+          echo "Environment: prod"
