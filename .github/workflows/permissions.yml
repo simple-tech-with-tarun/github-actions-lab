@@ -7,6 +7,9 @@ jobs:
   inspect:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+
     steps:
       - name: Show Token Permissions
         run: |
