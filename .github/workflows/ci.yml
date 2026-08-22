@@ -39,7 +39,7 @@ jobs:
           run: |
             echo "You are not supprosed to deploy: ${{ inputs.environment }}"
 
-    Warn:
+    warn:
       needs: production
       if: ${{ needs.production.result == 'failure' }}
       runs-on: ubuntu-latest
