@@ -33,6 +33,7 @@ jobs:
 
     steps:
       - name: Show Node version
+        shell: bash
         run: |
           echo "OS: ${{ matrix.os }}"
           echo "Selected Node version: ${{ matrix.node-version }}"
