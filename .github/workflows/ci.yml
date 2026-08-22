@@ -39,12 +39,12 @@ jobs:
           run: |
             echo "You are not supprosed to deploy: ${{ inputs.environment }}"
 
-    warn:
-      needs: production
-      if: ${{ needs.production.result == 'failure' }}
-      runs-on: ubuntu-latest
+    # warn:
+    #   needs: production
+    #   if: ${{ needs.production.result == 'failure' }}
+    #   runs-on: ubuntu-latest
 
-      steps: 
-        - name: Show another warning
-          run: |
-            echo "WHY DID YOU SELECT ${{ inputs.environment }}"  
+    #   steps: 
+    #     - name: Show another warning
+    #       run: |
+    #         echo "WHY DID YOU SELECT ${{ inputs.environment }}"  
