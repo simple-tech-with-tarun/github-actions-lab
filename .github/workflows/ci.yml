@@ -13,31 +13,31 @@ on:
           - prod
 
 jobs:
-   config:
-     runs-on: ubuntu-latest
+  config:
+    runs-on: ubuntu-latest
      
-     steps:
-      - name: Show select Environment
-        run: |
-          echo "Selected Environment ${{ inputs.environment }}"
+    steps:
+     - name: Show select Environment
+       run: |
+         echo "Selected Environment ${{ inputs.environment }}"
 
-   production:
-     if: ${{ inputs.environment == 'prod' }}
+  production:
+    if: ${{ inputs.environment == 'prod' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Production Deployment
+        run: |
+          echo "Running Production job ${{ github.run_number }}"
+
+   validation:
+     if: ${{ inputs.environment != 'prod' }}
      runs-on: ubuntu-latest
 
      steps:
-       - name: Production Deployment
+       - name: Show warning
          run: |
-           echo "Running Production job ${{ github.run_number }}"
-
-    validation:
-      if: ${{ inputs.environment != 'prod' }}
-      runs-on: ubuntu-latest
-
-      steps:
-        - name: Show warning
-          run: |
-            echo "You are not supprosed to deploy: ${{ inputs.environment }}"
+           echo "You are not supprosed to deploy: ${{ inputs.environment }}"
 
     # warn:
     #   needs: production
