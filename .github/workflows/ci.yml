@@ -41,7 +41,7 @@ jobs:
   
   warn:
     needs: production
-    if: ${{ always() && needs.production.result == 'failure' }}
+    if: ${{ needs.production.result == 'skipped' }}
     runs-on: ubuntu-latest
 
     steps:
