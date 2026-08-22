@@ -1,0 +1,14 @@
+name: Permissions Lab
+
+on:
+  workflow_dispatch:
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show Token Permissions
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Token is available: ${{ secrets.GUTHUB_TOKEN != '' }}"
