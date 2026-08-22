@@ -11,10 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Show PR Information
+      - name: PR check
         run: |
-          echo "PR Number: ${{ github.event.pull_request.number }}"
-          echo "Source Branch: ${{ github.head_ref }}"
-          echo "Target Branch: ${{ github.base_ref }}"
-          echo "Event: ${{ github.event_name }}"
-          echo "HELLO"
+          echo "Running PR CI"
+          exit 1
