@@ -11,4 +11,4 @@ jobs:
       - name: Show Token Permissions
         run: |
           echo "Repository: ${{ github.repository }}"
-          echo "Token is available: ${{ secrets.GUTHUB_TOKEN != '' }}"
+          echo "Token is available: ${{ secrets.GITHUB_TOKEN != '' }}"
