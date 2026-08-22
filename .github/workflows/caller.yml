@@ -1,0 +1,9 @@
+name: caller
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  call:
+    uses: ./.guthub/workflow/reusable-ci.yml    
