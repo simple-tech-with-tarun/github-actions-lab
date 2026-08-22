@@ -8,6 +8,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
+      fail-fast: true
       matrix:
         node-version:
           - 18
@@ -38,3 +39,8 @@ jobs:
         run: |
           echo "OS: ${{ matrix.os }}"
           echo "Selected Node version: ${{ matrix.node-version }}"
+
+          if [ "${{ matrix.node.version}}" == "25"] then
+            echo "Intentional Failure"
+            exit 1
+          fi
