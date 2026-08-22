@@ -5,6 +5,9 @@ on:
 
 jobs:
   prod:
+    needs:
+      - dev
+      - staging
     runs-on: ubuntu-latest
 
     environment: prod
