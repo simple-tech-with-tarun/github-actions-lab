@@ -2,6 +2,11 @@ name: Reusable ci
 
 on:
   workflow_call:
+    inputs:
+      environment:
+        description: "Environment to run against"
+        required: true
+        type: string
 
 jobs:
   test:
@@ -11,3 +16,4 @@ jobs:
     - id: run_reusable_workflow
       run: |
         echo "this job came from reusable workflow"
+        echo " Environment: ${{ inputs.environment }}"

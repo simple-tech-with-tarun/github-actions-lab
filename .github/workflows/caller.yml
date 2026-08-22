@@ -6,4 +6,6 @@ on:
 
 jobs:
   call:
-    uses: ./.github/workflows/reusable-ci.yml    
+    uses: ./.github/workflows/reusable-ci.yml
+    with: 
+      environment: test
