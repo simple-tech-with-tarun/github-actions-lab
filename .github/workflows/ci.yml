@@ -17,6 +17,10 @@ jobs:
         os:
           - windows-latest
           - ubuntu-latest
+        
+        include:
+          - os: windows-latest
+          - node-version: 100
 
     steps:
       - name: Show Node version
