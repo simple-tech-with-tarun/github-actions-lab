@@ -41,7 +41,7 @@ jobs:
   
   warn:
     needs: production
-    if: ${{ inputs.environment != 'prod' }}
+    if: ${{ needs.production == 'failure' }}
     runs-on: ubuntu-latest
 
     steps:
