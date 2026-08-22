@@ -11,7 +11,7 @@ jobs:
       contents: read
 
     steps:
-      - name: Read pull_requests
+      - name: Create test issue
         run: |
           curl -L \
           -X POST \
