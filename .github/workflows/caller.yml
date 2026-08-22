@@ -5,12 +5,12 @@ on:
     inputs:
       environment:
         description: "Enter Environment"
-        required: false
+        required: true
         type: string
 
 
 jobs:
   call:
     uses: ./.github/workflows/reusable-ci.yml
-    with: 
-      reusable_environment: ${{ inputs.environment }}
+    # with: 
+      # reusable_environment: ${{ inputs.environment }}
