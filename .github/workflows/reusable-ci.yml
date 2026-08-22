@@ -1,0 +1,13 @@
+name: Reusable ci
+
+on:
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - id: run_reusable_workflow
+      run: |
+        echo "this job came from reusable workflow"
