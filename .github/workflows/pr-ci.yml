@@ -14,4 +14,5 @@ jobs:
       - name: PR check fail
         run: |
           echo "Running PR CI"
+          echo "Do something"
           exit 1
