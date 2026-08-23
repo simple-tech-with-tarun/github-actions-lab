@@ -14,4 +14,4 @@ jobs:
       - name: PR check fail
         run: |
           echo "Running PR CI"
-          exit 1
+          echo "testing codeowners"
