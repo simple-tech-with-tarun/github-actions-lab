@@ -1,16 +1,17 @@
-name: PR CI
+name: PR Fail CI
 
 on:
   pull_request:
+    types:
+      - opened
+      - synchronize
 
 jobs:
   pre-check:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Show PR Information
+      - name: PR check fail
         run: |
-          echo "PR Number: ${{ github.event.pull_request.number }}"
-          echo "Source Branch: ${{ github.head_ref }}"
-          echo "Target Branch: ${{ github.base_ref }}"
-          echo "Event: ${{ github.event_name }}"
+          echo "Running PR CI"
+          exit 1
