@@ -1,0 +1,17 @@
+name: Concurrency Lab
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Start
+        run: |
+          echo "Starting..."
+          sleep 30
+
+      - name: Finish
+        run: echo "Finished"
