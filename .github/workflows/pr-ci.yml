@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: PR check fail
+      - name: codeowners test
         run: |
           echo "Running PR CI"
-          exit 1
+          echo "testing codeowners"
