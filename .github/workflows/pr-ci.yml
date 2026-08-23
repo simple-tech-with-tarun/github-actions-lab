@@ -1,7 +1,10 @@
 name: PR Fail CI
 
 on:
-  workflow_dispatch:
+  pull_request:
+    types:
+      - opened
+      - synchronize
 
 jobs:
   pre-check:
