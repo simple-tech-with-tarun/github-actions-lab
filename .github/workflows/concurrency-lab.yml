@@ -14,5 +14,4 @@ jobs:
           sleep 30
 
       - name: Finish
-        run: |
-         echo "Finished"
+        run: echo "Finished"
