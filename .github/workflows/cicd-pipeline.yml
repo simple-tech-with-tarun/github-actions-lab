@@ -23,3 +23,15 @@ jobs:
           echo "Commit: $GITHUB_SHA"
           echo "Ref: $GITHUB_REF"
           echo "Validation passed"
+
+  test:
+    name: Test
+    needs: validate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run test1
+        run: | 
+          echo "Running tests..."
+          sleep 5
+          echo "Tests passed"
