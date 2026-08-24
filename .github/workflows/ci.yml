@@ -2,19 +2,14 @@ name: ci_1
 
 on:
   workflow_dispatch: # running on manual trigger
-  # push:
-  #   branches: # runs after pushing to main branch
-  #     - main
-  # pull_request:
-  #   branches: # runs after pull request targetting any branch
-  #     - "**"
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
       - name: Validate
         run: echo "GitHub actions CLI is working"
