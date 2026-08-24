@@ -58,3 +58,22 @@ jobs:
         with: 
           path: build/
           name: application-build
+
+  package:
+    name: Package
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with: 
+          name: application-build
+          path: build/
+
+      - name: Verify download artifact
+        run: |
+          echo "Download files:"
+          ls -la build
+          echo "Contents:"
+          cat build/build-info.txt
