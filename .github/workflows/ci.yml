@@ -13,3 +13,10 @@ jobs:
 
       - name: Validate
         run: echo "GitHub actions CLI is working"
+      
+      - name: Show GitHub context
+        run: |
+          echo "GitHub SHA: ${{ github.sha }}"
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Action ref: ${{ github.action_ref }}"
+          echo "Action SHA: ${{ github.action_sha }}"
