@@ -35,3 +35,20 @@ jobs:
           echo "Running tests..."
           sleep 5
           echo "Tests passed"
+
+  build:
+    name: Build
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build Application
+        run: |
+          echo "Building Application"
+          mkdir -p build
+          echo "CI/CD Pipeline Build" > build/build-info.txt
+      
+      - name: List Build output
+        run: |
+          ls -la build
+          cat build/build-info.txt
