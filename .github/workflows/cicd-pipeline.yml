@@ -1,0 +1,100 @@
+name: CICD Pipeline
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Validate Repository
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Commit: $GITHUB_SHA"
+          echo "Ref: $GITHUB_REF"
+          echo "Validation passed"
+
+  test:
+    name: Test
+    needs: validate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run test1
+        run: | 
+          echo "Running tests..."
+          sleep 5
+          echo "Tests passed"
+
+  build:
+    name: Build
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build Application
+        run: |
+          echo "Building Application"
+          mkdir -p build
+          echo "CI/CD Pipeline Build" > build/build-info.txt
+      
+      - name: List Build output
+        run: |
+          ls -la build
+          cat build/build-info.txt
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with: 
+          path: build/
+          name: application-build
+
+  package:
+    name: Package
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Build Artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 
+        with: 
+          name: application-build
+          path: build/
+
+      - name: Verify download artifact
+        run: |
+          echo "Download files:"
+          ls -la build
+          echo "Contents:"
+          cat build/build-info.txt
+
+  deploy:
+    name: Deploy
+    needs: package
+    if: github.ref == 'refs/heads/main'
+    environment: production
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Build artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 
+        with:
+          name:  application-build
+          path: build/
+
+      - name: Deploy
+        run: |
+          echo "Deploying Application..."
+          echo "Artifact Contents:"
+          cat build/build-info.txt
+          echo "Deployment Successful"
