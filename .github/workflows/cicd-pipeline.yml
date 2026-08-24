@@ -77,3 +77,22 @@ jobs:
           ls -la build
           echo "Contents:"
           cat build/build-info.txt
+
+  deploy:
+    name: Deploy
+    needs: package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name:  application-build
+          path: build/
+
+      - name: Deploy
+        run: |
+          echo "Deploying Application..."
+          echo "Artifact Contents:"
+          cat build/build-info.txt
+          echo "Deployment Successful"
