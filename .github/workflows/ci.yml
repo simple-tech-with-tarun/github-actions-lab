@@ -3,6 +3,9 @@ name: ci_1
 on:
   workflow_dispatch: # running on manual trigger
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,10 +16,3 @@ jobs:
 
       - name: Validate
         run: echo "GitHub actions CLI is working"
-      
-      - name: Show GitHub context
-        run: |
-          echo "GitHub SHA: ${{ github.sha }}"
-          echo "Workflow: ${{ github.workflow }}"
-          echo "Action ref: ${{ github.action_ref }}"
-          echo "Action SHA: ${{ github.action_sha }}"
